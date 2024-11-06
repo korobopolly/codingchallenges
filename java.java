@@ -505,3 +505,83 @@ class Solution {
         return answer;
     }
 }
+
+//코딩테스트 문제 LV1
+// 당신은 동영상 재생기를 만들고 있습니다. 당신의 동영상 재생기는 10초 전으로 이동, 10초 후로 이동, 오프닝 건너뛰기 3가지 기능을 지원합니다. 각 기능이 수행하는 작업은 다음과 같습니다.
+// 10초 전으로 이동: 사용자가 "prev" 명령을 입력할 경우 동영상의 재생 위치를 현재 위치에서 10초 전으로 이동합니다. 현재 위치가 10초 미만인 경우 영상의 처음 위치로 이동합니다. 영상의 처음 위치는 0분 0초입니다.
+// 10초 후로 이동: 사용자가 "next" 명령을 입력할 경우 동영상의 재생 위치를 현재 위치에서 10초 후로 이동합니다. 동영상의 남은 시간이 10초 미만일 경우 영상의 마지막 위치로 이동합니다. 영상의 마지막 위치는 동영상의 길이와 같습니다.
+// 오프닝 건너뛰기: 현재 재생 위치가 오프닝 구간(op_start ≤ 현재 재생 위치 ≤ op_end)인 경우 자동으로 오프닝이 끝나는 위치로 이동합니다.
+// 동영상의 길이를 나타내는 문자열 video_len, 기능이 수행되기 직전의 재생위치를 나타내는 문자열 pos, 오프닝 시작 시각을 나타내는 문자열 op_start, 오프닝이 끝나는 시각을 나타내는 문자열 op_end, 사용자의 입력을 나타내는 1차원 문자열 배열 commands가 매개변수로 주어집니다. 이때 사용자의 입력이 모두 끝난 후 동영상의 위치를 "mm:ss" 형식으로 return 하도록 solution 함수를 완성해 주세요.
+
+class Solution {
+    public String solution(String video_len, String pos, String op_start, String op_end, String[] commands) {
+        String answer = pos; // 초기 시간으로 설정
+
+        // 1. 최초에 op_start와 op_end 범위 안에 있는지 확인
+        if (isWithinRange(answer, op_start, op_end)) {
+            answer = op_end;
+        }
+
+        // 2. commands 배열을 순회하며 prev, next 명령 처리
+        for (int i = 0; i < commands.length; i++) {
+            if (commands[i].equals("prev")) {
+                answer = adjustTime(answer, -10); // 10초 감소
+            } else if (commands[i].equals("next")) {
+                answer = adjustTime(answer, 10); // 10초 증가
+            }
+
+            // 3. 매 명령 후 op_start와 op_end 범위 안에 있으면 op_end로 설정
+            if (isWithinRange(answer, op_start, op_end)) {
+                answer = op_end;
+            }
+
+            // 4. video_len을 넘지 않도록 제한
+            if (isGreaterThan(answer, video_len)) {
+                answer = video_len;
+            }
+        }
+
+        return answer;
+    }
+
+    // 주어진 시간(time)이 op_start와 op_end 범위 안에 있는지 확인하는 메서드
+    private boolean isWithinRange(String time, String op_start, String op_end) {
+        return time.compareTo(op_start) >= 0 && time.compareTo(op_end) <= 0;
+    }
+
+    // 시간(time)이 video_len을 초과하는지 확인하는 메서드
+    private boolean isGreaterThan(String time, String limit) {
+        return convertToSeconds(time) > convertToSeconds(limit);
+    }
+
+    // 시간을 MM:SS 형식에서 초로 변환하는 메서드
+    private int convertToSeconds(String time) {
+        String[] timeParts = time.split(":");
+        int minutes = Integer.parseInt(timeParts[0]);
+        int seconds = Integer.parseInt(timeParts[1]);
+        return minutes * 60 + seconds;
+    }
+
+    // 특정 시간에서 초를 더하거나 빼는 메서드
+    private String adjustTime(String time, int secondsToAdjust) {
+        // 1. 시간 문자열을 분과 초로 분리
+        String[] timeParts = time.split(":");
+        int minutes = Integer.parseInt(timeParts[0]);
+        int seconds = Integer.parseInt(timeParts[1]);
+
+        // 2. 전체 초로 변환 후 초를 더하거나 빼기
+        int totalSeconds = (minutes * 60) + seconds + secondsToAdjust;
+
+        // 3. 결과가 0보다 작은 경우 0초로 설정
+        if (totalSeconds < 0) {
+            totalSeconds = 0;
+        }
+
+        // 4. 분과 초로 다시 변환
+        int newMinutes = totalSeconds / 60;
+        int newSeconds = totalSeconds % 60;
+
+        // 5. "MM:SS" 형식으로 반환
+        return String.format("%02d:%02d", newMinutes, newSeconds);
+    }
+}
