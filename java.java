@@ -631,3 +631,52 @@ class Solution {
         return arraynum;
     }
 }
+
+// 지민이는 다양한 크기의 정사각형 모양 돗자리를 가지고 공원에 소풍을 나왔습니다. 공원에는 이미 돗자리를 깔고 여가를 즐기는 사람들이 많아 지민이가 깔 수 있는 가장 큰 돗자리가 어떤 건지 확인하려 합니다. 예를 들어 지민이가 가지고 있는 돗자리의 한 변 길이가 5, 3, 2 세 종류이고, 사람들이 다음과 같이 앉아 있다면 지민이가 깔 수 있는 가장 큰 돗자리는 3x3 크기입니다.
+// 지민이가 가진 돗자리들의 한 변의 길이들이 담긴 정수 리스트 mats, 현재 공원의 자리 배치도를 의미하는 2차원 문자열 리스트 park가 주어질 때 지민이가 깔 수 있는 가장 큰 돗자리의 한 변 길이를 return 하도록 solution 함수를 완성해 주세요. 아무런 돗자리도 깔 수 없는 경우 -1을 return합니다.
+
+import java.util.Arrays;
+
+class Solution {
+    public int solution(int[] mats, String[][] park) {
+        // 1. 큰 돗자리부터 사용하기 위해 내림차순으로 정렬
+        Arrays.sort(mats);
+        int rows = park.length;
+        int cols = park[0].length;
+        
+        // 2. 큰 돗자리부터 하나씩 시도
+        for (int i = mats.length - 1; i >= 0; i--) {
+            int size = mats[i];
+            if (canPlaceMat(size, park, rows, cols)) {
+                return size;  // 가장 큰 크기의 돗자리를 놓을 수 있으면 바로 반환
+            }
+        }
+
+        return -1;  // 아무 돗자리도 놓을 수 없는 경우
+    }
+
+    // 특정 크기의 돗자리를 놓을 수 있는지 확인하는 메서드
+    private boolean canPlaceMat(int size, String[][] park, int rows, int cols) {
+        // park의 모든 시작 위치에 대해 size x size 공간이 모두 "-1"인지 확인
+        for (int r = 0; r <= rows - size; r++) {
+            for (int c = 0; c <= cols - size; c++) {
+                if (isPlaceable(r, c, size, park)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    // (startRow, startCol) 위치에서 size x size 돗자리를 놓을 수 있는지 확인하는 메서드
+    private boolean isPlaceable(int startRow, int startCol, int size, String[][] park) {
+        for (int r = startRow; r < startRow + size; r++) {
+            for (int c = startCol; c < startCol + size; c++) {
+                if (!park[r][c].equals("-1")) {  // "-1"가 아닌 경우 해당 위치에 돗자리를 놓을 수 없음
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+}
