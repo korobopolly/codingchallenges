@@ -309,4 +309,128 @@ def solution(absolutes, signs):
             real_list.append(-absolutes[i])
     return sum(real_list)
 
-print(solution([4,7,12],[True,False,True]	))
+# 0부터 9까지의 숫자 중 일부가 들어있는 정수 배열 numbers가 매개변수로 주어집니다. numbers에서 찾을 수 없는 0부터 9까지의 숫자를 모두 찾아 더한 수를 return 하도록 solution 함수를 완성해주세요.
+# 제한사항
+# 1 ≤ numbers의 길이 ≤ 9
+# 0 ≤ numbers의 모든 원소 ≤ 9
+# numbers의 모든 원소는 서로 다릅니다.
+# 입출력 예
+# numbers	result
+# [1,2,3,4,6,7,8,0]	14
+# [5,8,4,0,6,7,9]	6
+
+def solution(numbers):
+    output = [1,2,3,4,5,6,7,8,9,0]
+    for i in range(len(numbers)):
+        if numbers[i] in output:
+            del output[output.index(numbers[i])]
+
+    if len(output) == 0:
+        return 0
+    answer = sum(output)
+    return answer
+
+# 정수를 저장한 배열, arr 에서 가장 작은 수를 제거한 배열을 리턴하는 함수, solution을 완성해주세요. 단, 리턴하려는 배열이 빈 배열인 경우엔 배열에 -1을 채워 리턴하세요. 예를들어 arr이 [4,3,2,1]인 경우는 [4,3,2]를 리턴 하고, [10]면 [-1]을 리턴 합니다.
+# 제한 조건
+# arr은 길이 1 이상인 배열입니다.
+# 인덱스 i, j에 대해 i ≠ j이면 arr[i] ≠ arr[j] 입니다.
+# 입출력 예
+# arr	return
+# [4,3,2,1]	[4,3,2]
+# [10]	[-1]
+
+def solution(arr):
+    min_arr = min(arr)
+    answer = [x for x in arr if x != min_arr]
+    return answer if answer else [-1]
+
+# 프로그래머스 모바일은 개인정보 보호를 위해 고지서를 보낼 때 고객들의 전화번호의 일부를 가립니다.
+# 전화번호가 문자열 phone_number로 주어졌을 때, 전화번호의 뒷 4자리를 제외한 나머지 숫자를 전부 *으로 가린 문자열을 리턴하는 함수, solution을 완성해주세요.
+# 제한 조건
+# phone_number는 길이 4 이상, 20이하인 문자열입니다.
+# 입출력 예
+# phone_number	return
+# "01033334444"	"*******4444"
+# "027778888"	"*****8888"
+
+def solution(phone_number):
+    phone_number_list = list(phone_number)
+    for i in range(len(phone_number_list)-4):
+        phone_number_list[i] = "*"
+    return "".join(phone_number_list)
+
+# 문자열 s에는 공백으로 구분된 숫자들이 저장되어 있습니다. str에 나타나는 숫자 중 최소값과 최대값을 찾아 이를 "(최소값) (최대값)"형태의 문자열을 반환하는 함수, solution을 완성하세요.
+# 예를들어 s가 "1 2 3 4"라면 "1 4"를 리턴하고, "-1 -2 -3 -4"라면 "-4 -1"을 리턴하면 됩니다.
+# 제한 조건
+# s에는 둘 이상의 정수가 공백으로 구분되어 있습니다.
+# 입출력 예
+# s	return
+# "1 2 3 4"	"1 4"
+# "-1 -2 -3 -4"	"-4 -1"
+# "-1 -1"	"-1 -1"
+
+def solution(s):
+    s_list = s.split()
+    s_list = list(map(int,s_list))
+    print(s_list)
+    print(min(s_list))
+    print(max(s_list))
+    answer = min(s_list), max(s_list)
+    return " ".join(list(map(str,answer)))
+
+# 길이가 같은 배열 A, B 두개가 있습니다. 각 배열은 자연수로 이루어져 있습니다.
+# 배열 A, B에서 각각 한 개의 숫자를 뽑아 두 수를 곱합니다. 이러한 과정을 배열의 길이만큼 반복하며, 두 수를 곱한 값을 누적하여 더합니다. 이때 최종적으로 누적된 값이 최소가 되도록 만드는 것이 목표입니다. (단, 각 배열에서 k번째 숫자를 뽑았다면 다음에 k번째 숫자는 다시 뽑을 수 없습니다.)
+# 예를 들어 A = [1, 4, 2] , B = [5, 4, 4] 라면
+# A에서 첫번째 숫자인 1, B에서 첫번째 숫자인 5를 뽑아 곱하여 더합니다. (누적된 값 : 0 + 5(1x5) = 5)
+# A에서 두번째 숫자인 4, B에서 세번째 숫자인 4를 뽑아 곱하여 더합니다. (누적된 값 : 5 + 16(4x4) = 21)
+# A에서 세번째 숫자인 2, B에서 두번째 숫자인 4를 뽑아 곱하여 더합니다. (누적된 값 : 21 + 8(2x4) = 29)
+# 즉, 이 경우가 최소가 되므로 29를 return 합니다.
+# 배열 A, B가 주어질 때 최종적으로 누적된 최솟값을 return 하는 solution 함수를 완성해 주세요.
+# 제한사항
+# 배열 A, B의 크기 : 1,000 이하의 자연수
+# 배열 A, B의 원소의 크기 : 1,000 이하의 자연수
+# 입출력 예
+# A	B	answer
+# [1, 4, 2]	[5, 4, 4]	29
+# [1,2]	[3,4]	10
+# 입출력 예 설명
+# 입출력 예 #1
+# 문제의 예시와 같습니다.
+# 입출력 예 #2
+# A에서 첫번째 숫자인 1, B에서 두번째 숫자인 4를 뽑아 곱하여 더합니다. (누적된 값 : 4) 다음, A에서 두번째 숫자인 2, B에서 첫번째 숫자인 3을 뽑아 곱하여 더합니다. (누적된 값 : 4 + 6 = 10)
+# 이 경우가 최소이므로 10을 return 합니다.
+
+def solution(A,B):
+    A.sort()
+    B.sort(reverse=True)
+    return sum(a*b for a,b in zip(A,B))
+
+# 괄호가 바르게 짝지어졌다는 것은 '(' 문자로 열렸으면 반드시 짝지어서 ')' 문자로 닫혀야 한다는 뜻입니다. 예를 들어
+# "()()" 또는 "(())()" 는 올바른 괄호입니다.
+# ")()(" 또는 "(()(" 는 올바르지 않은 괄호입니다.
+# '(' 또는 ')' 로만 이루어진 문자열 s가 주어졌을 때, 문자열 s가 올바른 괄호이면 true를 return 하고, 올바르지 않은 괄호이면 false를 return 하는 solution 함수를 완성해 주세요.
+# 제한사항
+# 문자열 s의 길이 : 100,000 이하의 자연수
+# 문자열 s는 '(' 또는 ')' 로만 이루어져 있습니다.
+# 입출력 예
+# s	answer
+# "()()"	true
+# "(())()"	true
+# ")()("	false
+# "(()("	false
+# 입출력 예 설명
+# 입출력 예 #1,2,3,4
+# 문제의 예시와 같습니다.
+
+def solution(s):
+    stack = []
+    for char in s:
+        if char == "(":
+            stack.append("(")
+        elif stack:
+            stack.pop()
+        else:
+            return False
+    return not stack
+
+print(solution(["right","left","left","left"],	[5, 3]))
