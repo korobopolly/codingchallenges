@@ -185,4 +185,128 @@ def solution(n):
 
 def solution(n):
     return (lambda x:int(((x)**(1/2)+1)**2) if x**(1/2) == int(x**(1/2)) else -1)(n)
-print(solution(121))
+
+# 양의 정수 x가 하샤드 수이려면 x의 자릿수의 합으로 x가 나누어져야 합니다. 예를 들어 18의 자릿수 합은 1+8=9이고, 18은 9로 나누어 떨어지므로 18은 하샤드 수입니다. 자연수 x를 입력받아 x가 하샤드 수인지 아닌지 검사하는 함수, solution을 완성해주세요.
+# 제한 조건
+# x는 1 이상, 10000 이하인 정수입니다.
+# 입출력 예
+# x	return
+# 10	true
+# 12	true
+# 11	false
+# 13	false
+# 입출력 예 설명
+# 입출력 예 #1
+# 10의 모든 자릿수의 합은 1입니다. 10은 1로 나누어 떨어지므로 10은 하샤드 수입니다.
+
+# 입출력 예 #2
+# 12의 모든 자릿수의 합은 3입니다. 12는 3으로 나누어 떨어지므로 12는 하샤드 수입니다.
+
+# 입출력 예 #3
+# 11의 모든 자릿수의 합은 2입니다. 11은 2로 나누어 떨어지지 않으므로 11는 하샤드 수가 아닙니다.
+
+# 입출력 예 #4
+# 13의 모든 자릿수의 합은 4입니다. 13은 4로 나누어 떨어지지 않으므로 13은 하샤드 수가 아닙니다.
+
+def solution(x):
+    answer = map(int, str(x))
+    return x % sum(answer) == 0
+
+# array의 각 element 중 divisor로 나누어 떨어지는 값을 오름차순으로 정렬한 배열을 반환하는 함수, solution을 작성해주세요.
+# divisor로 나누어 떨어지는 element가 하나도 없다면 배열에 -1을 담아 반환하세요.
+# 제한사항
+# arr은 자연수를 담은 배열입니다.
+# 정수 i, j에 대해 i ≠ j 이면 arr[i] ≠ arr[j] 입니다.
+# divisor는 자연수입니다.
+# array는 길이 1 이상인 배열입니다.
+# 입출력 예
+# arr	divisor	return
+# [5, 9, 7, 10]	5	[5, 10]
+# [2, 36, 1, 3]	1	[1, 2, 3, 36]
+# [3,2,6]	10	[-1]
+# 입출력 예 설명
+# 입출력 예#1
+# arr의 원소 중 5로 나누어 떨어지는 원소는 5와 10입니다. 따라서 [5, 10]을 리턴합니다.
+# 입출력 예#2
+# arr의 모든 원소는 1으로 나누어 떨어집니다. 원소를 오름차순으로 정렬해 [1, 2, 3, 36]을 리턴합니다.
+# 입출력 예#3
+# 3, 2, 6은 10으로 나누어 떨어지지 않습니다. 나누어 떨어지는 원소가 없으므로 [-1]을 리턴합니다.
+
+def solution(arr, divisor):
+    answer = []
+    for i in arr:
+        if i % divisor == 0 :
+            answer.append(i)
+    
+    if(len(answer) == 0):
+        answer.append(-1)
+    return sorted(answer)
+
+# String형 배열 seoul의 element중 "Kim"의 위치 x를 찾아, "김서방은 x에 있다"는 String을 반환하는 함수, solution을 완성하세요. seoul에 "Kim"은 오직 한 번만 나타나며 잘못된 값이 입력되는 경우는 없습니다.
+# 제한 사항
+# seoul은 길이 1 이상, 1000 이하인 배열입니다.
+# seoul의 원소는 길이 1 이상, 20 이하인 문자열입니다.
+# "Kim"은 반드시 seoul 안에 포함되어 있습니다.
+# 입출력 예
+# seoul	return
+# ["Jane", "Kim"]	"김서방은 1에 있다"
+
+def solution(seoul):
+    i = seoul.index("Kim")
+    return f"김서방은 {i}에 있다"
+
+# 1937년 Collatz란 사람에 의해 제기된 이 추측은, 주어진 수가 1이 될 때까지 다음 작업을 반복하면, 모든 수를 1로 만들 수 있다는 추측입니다. 작업은 다음과 같습니다.
+# 1-1. 입력된 수가 짝수라면 2로 나눕니다. 
+# 1-2. 입력된 수가 홀수라면 3을 곱하고 1을 더합니다. 
+# 2. 결과로 나온 수에 같은 작업을 1이 될 때까지 반복합니다. 
+# 예를 들어, 주어진 수가 6이라면 6 → 3 → 10 → 5 → 16 → 8 → 4 → 2 → 1 이 되어 총 8번 만에 1이 됩니다. 위 작업을 몇 번이나 반복해야 하는지 반환하는 함수, solution을 완성해 주세요. 단, 주어진 수가 1인 경우에는 0을, 작업을 500번 반복할 때까지 1이 되지 않는다면 –1을 반환해 주세요.
+# 제한 사항
+# 입력된 수, num은 1 이상 8,000,000 미만인 정수입니다.
+# 입출력 예
+# n	result
+# 6	8
+# 16	4
+# 626331	-1
+# 입출력 예 설명
+# 입출력 예 #1
+# 문제의 설명과 같습니다.
+# 입출력 예 #2
+# 16 → 8 → 4 → 2 → 1 이 되어 총 4번 만에 1이 됩니다.
+# 입출력 예 #3
+# 626331은 500번을 시도해도 1이 되지 못하므로 -1을 리턴해야 합니다.
+
+def solution(num):
+    for i in range (500):
+        if num == 1:
+            return i
+        num = num / 2 if num % 2 == 0 else num * 3 + 1
+    return -1
+
+# 어떤 정수들이 있습니다. 이 정수들의 절댓값을 차례대로 담은 정수 배열 absolutes와 이 정수들의 부호를 차례대로 담은 불리언 배열 signs가 매개변수로 주어집니다. 실제 정수들의 합을 구하여 return 하도록 solution 함수를 완성해주세요.
+# 제한사항
+# absolutes의 길이는 1 이상 1,000 이하입니다.
+# absolutes의 모든 수는 각각 1 이상 1,000 이하입니다.
+# signs의 길이는 absolutes의 길이와 같습니다.
+# signs[i] 가 참이면 absolutes[i] 의 실제 정수가 양수임을, 그렇지 않으면 음수임을 의미합니다.
+# 입출력 예
+# absolutes	signs	result
+# [4,7,12]	[true,false,true]	9
+# [1,2,3]	[false,false,true]	0
+# 입출력 예 설명
+# 입출력 예 #1
+# signs가 [true,false,true] 이므로, 실제 수들의 값은 각각 4, -7, 12입니다.
+# 따라서 세 수의 합인 9를 return 해야 합니다.
+# 입출력 예 #2
+# signs가 [false,false,true] 이므로, 실제 수들의 값은 각각 -1, -2, 3입니다.
+# 따라서 세 수의 합인 0을 return 해야 합니다.
+
+def solution(absolutes, signs):
+    real_list = []
+    for i in range(len(absolutes)):
+        if signs[i]:
+            real_list.append(absolutes[i])
+        else:
+            real_list.append(-absolutes[i])
+    return sum(real_list)
+
+print(solution([4,7,12],[True,False,True]	))
