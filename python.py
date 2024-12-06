@@ -433,4 +433,52 @@ def solution(s):
             return False
     return not stack
 
-print(solution(["right","left","left","left"],	[5, 3]))
+# JadenCase란 모든 단어의 첫 문자가 대문자이고, 그 외의 알파벳은 소문자인 문자열입니다. 단, 첫 문자가 알파벳이 아닐 때에는 이어지는 알파벳은 소문자로 쓰면 됩니다. (첫 번째 입출력 예 참고)
+# 문자열 s가 주어졌을 때, s를 JadenCase로 바꾼 문자열을 리턴하는 함수, solution을 완성해주세요.
+# 제한 조건
+# s는 길이 1 이상 200 이하인 문자열입니다.
+# s는 알파벳과 숫자, 공백문자(" ")로 이루어져 있습니다.
+# 숫자는 단어의 첫 문자로만 나옵니다.
+# 숫자로만 이루어진 단어는 없습니다.
+# 공백문자가 연속해서 나올 수 있습니다.
+# 입출력 예
+# s	return
+# "3people unFollowed me"	"3people Unfollowed Me"
+# "for the last week"	"For The Last Week"
+
+def solution(s):
+    answer = []
+    UPPERCASE = True
+    for i in s:
+        if i== " ":
+            answer.append(" ")
+            UPPERCASE = True
+        else:
+            if UPPERCASE == True:
+                answer.append(i.upper())
+                UPPERCASE = False
+            else:
+                answer.append(i.lower())
+            
+    return "".join(answer)
+
+# 0과 1로 이루어진 어떤 문자열 x에 대한 이진 변환을 다음과 같이 정의합니다.
+# x의 모든 0을 제거합니다.
+# x의 길이를 c라고 하면, x를 "c를 2진법으로 표현한 문자열"로 바꿉니다.
+# 예를 들어, x = "0111010"이라면, x에 이진 변환을 가하면 x = "0111010" -> "1111" -> "100" 이 됩니다.
+# 0과 1로 이루어진 문자열 s가 매개변수로 주어집니다. s가 "1"이 될 때까지 계속해서 s에 이진 변환을 가했을 때, 이진 변환의 횟수와 변환 과정에서 제거된 모든 0의 개수를 각각 배열에 담아 return 하도록 solution 함수를 완성해주세요.
+# 제한사항
+# s의 길이는 1 이상 150,000 이하입니다.
+# s에는 '1'이 최소 하나 이상 포함되어 있습니다.
+
+def solution(s):
+    count_zero = 0
+    num = 0
+    while (len(s) > 1):
+        count_zero += s.count('0')
+        num += 1
+        s = bin(s.count('1'))[2:]
+
+    return [num, count_zero]
+
+print(solution("1111111"))
