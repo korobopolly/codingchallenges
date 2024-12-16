@@ -1,4 +1,4 @@
-# 코딩테스트 문제 LV1
+# 코딩테스트 문제 LV1 ~ LV3
 
 # 정수 n을 입력받아 n의 약수를 모두 더한 값을 리턴하는 함수, solution을 완성해주세요.
 # 제한 사항
@@ -742,4 +742,84 @@ def solution(elements):
             sub_sum = sum(elements[j:j + i])
             set_sum.add(sub_sum)
     return len(set_sum)
-print(solution([7,9,1,1,4]))
+
+# XYZ 마트는 일정한 금액을 지불하면 10일 동안 회원 자격을 부여합니다. XYZ 마트에서는 회원을 대상으로 매일 한 가지 제품을 할인하는 행사를 합니다. 할인하는 제품은 하루에 하나씩만 구매할 수 있습니다. 알뜰한 정현이는 자신이 원하는 제품과 수량이 할인하는 날짜와 10일 연속으로 일치할 경우에 맞춰서 회원가입을 하려 합니다.
+# 예를 들어, 정현이가 원하는 제품이 바나나 3개, 사과 2개, 쌀 2개, 돼지고기 2개, 냄비 1개이며, XYZ 마트에서 14일간 회원을 대상으로 할인하는 제품이 날짜 순서대로 치킨, 사과, 사과, 바나나, 쌀, 사과, 돼지고기, 바나나, 돼지고기, 쌀, 냄비, 바나나, 사과, 바나나인 경우에 대해 알아봅시다. 첫째 날부터 열흘 간에는 냄비가 할인하지 않기 때문에 첫째 날에는 회원가입을 하지 않습니다. 둘째 날부터 열흘 간에는 바나나를 원하는 만큼 할인구매할 수 없기 때문에 둘째 날에도 회원가입을 하지 않습니다. 셋째 날, 넷째 날, 다섯째 날부터 각각 열흘은 원하는 제품과 수량이 일치하기 때문에 셋 중 하루에 회원가입을 하려 합니다.
+# 정현이가 원하는 제품을 나타내는 문자열 배열 want와 정현이가 원하는 제품의 수량을 나타내는 정수 배열 number, XYZ 마트에서 할인하는 제품을 나타내는 문자열 배열 discount가 주어졌을 때, 회원등록시 정현이가 원하는 제품을 모두 할인 받을 수 있는 회원등록 날짜의 총 일수를 return 하는 solution 함수를 완성하시오. 가능한 날이 없으면 0을 return 합니다.
+
+def solution(want, number, discount):
+    list1 = list(zip(want, number))
+    answer = 0
+    k = 0
+    while(k+9<len(discount)):
+        dict = {}
+        for num in discount[k:k+10]:
+            if num in dict:
+                dict[num] += 1
+            else:
+                dict[num] = 1
+        
+        is_valid = True
+        for i,j in list1:
+            if (dict.get(i,0) < j):
+                is_valid = False
+                break
+        if is_valid:
+            answer += 1
+        k += 1
+    return answer
+
+# 다음 규칙을 지키는 문자열을 올바른 괄호 문자열이라고 정의합니다.
+# (), [], {} 는 모두 올바른 괄호 문자열입니다.
+# 만약 A가 올바른 괄호 문자열이라면, (A), [A], {A} 도 올바른 괄호 문자열입니다. 예를 들어, [] 가 올바른 괄호 문자열이므로, ([]) 도 올바른 괄호 문자열입니다.
+# 만약 A, B가 올바른 괄호 문자열이라면, AB 도 올바른 괄호 문자열입니다. 예를 들어, {} 와 ([]) 가 올바른 괄호 문자열이므로, {}([]) 도 올바른 괄호 문자열입니다.
+# 대괄호, 중괄호, 그리고 소괄호로 이루어진 문자열 s가 매개변수로 주어집니다. 이 s를 왼쪽으로 x (0 ≤ x < (s의 길이)) 칸만큼 회전시켰을 때 s가 올바른 괄호 문자열이 되게 하는 x의 개수를 return 하도록 solution 함수를 완성해주세요.
+
+def solution(s):
+    answer = 0
+    rotate = lambda s: s[1:] + s[0]
+    for i in range(len(s)):
+        s = rotate(s)
+
+        list_pop = []
+        is_valid = True
+        for j in s:
+            if j == "[" or j == "(" or j == "{":
+                list_pop.append(j)
+            else:
+                if list_pop == []:
+                    is_valid = False #유효성 검사 필요
+                    break
+                else:
+                    if list_pop[-1] == "[" and j == "]":
+                        list_pop.pop()
+                    elif list_pop[-1] == "(" and j == ")":
+                        list_pop.pop()
+                    elif list_pop[-1] == "{" and j == "}":
+                        list_pop.pop()
+                    else:
+                        is_valid = False #유효성 검사 필요
+                        break
+        if is_valid and not list_pop:
+            answer += 1
+    return answer
+
+# 위와 같은 삼각형의 꼭대기에서 바닥까지 이어지는 경로 중, 거쳐간 숫자의 합이 가장 큰 경우를 찾아보려고 합니다. 아래 칸으로 이동할 때는 대각선 방향으로 한 칸 오른쪽 또는 왼쪽으로만 이동 가능합니다. 예를 들어 3에서는 그 아래칸의 8 또는 1로만 이동이 가능합니다.
+# 삼각형의 정보가 담긴 배열 triangle이 매개변수로 주어질 때, 거쳐간 숫자의 최댓값을 return 하도록 solution 함수를 완성하세요.
+
+def solution(triangle):
+    for i in range(len(triangle)-2,-1,-1):
+        for j in range(len(triangle[i])):
+            triangle[i][j] += max(triangle[i+1][j],triangle[i+1][j+1])
+    return triangle[0][0]
+
+# 백준 단계별로 풀어보기
+
+# 아래 예제와 같이 새싹을 출력하시오.
+
+print("         ,r'\"7\n"+
+"r`-_   ,'  ,/\n"+
+" \. \". L_r'\n"+
+"   `~\/\n"+
+"      |\n"+
+"      |\n")
