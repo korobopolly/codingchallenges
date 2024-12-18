@@ -817,9 +817,73 @@ def solution(triangle):
 
 # 아래 예제와 같이 새싹을 출력하시오.
 
-print("         ,r'\"7\n"+
-"r`-_   ,'  ,/\n"+
-" \. \". L_r'\n"+
-"   `~\/\n"+
-"      |\n"+
-"      |\n")
+# print("         ,r'\"7\n"+
+# "r`-_   ,'  ,/\n"+
+# " \. \". L_r'\n"+
+# "   `~\/\n"+
+# "      |\n"+
+# "      |\n")
+
+# 동혁이는 오래된 창고를 뒤지다가 낡은 체스판과 피스를 발견했다.
+# 체스판의 먼지를 털어내고 걸레로 닦으니 그럭저럭 쓸만한 체스판이 되었다. 하지만, 검정색 피스는 모두 있었으나, 흰색 피스는 개수가 올바르지 않았다.
+# 체스는 총 16개의 피스를 사용하며, 킹 1개, 퀸 1개, 룩 2개, 비숍 2개, 나이트 2개, 폰 8개로 구성되어 있다.
+# 동혁이가 발견한 흰색 피스의 개수가 주어졌을 때, 몇 개를 더하거나 빼야 올바른 세트가 되는지 구하는 프로그램을 작성하시오.
+
+# correct_pieces = [1, 1, 2, 2, 2, 8]
+# current_pieces = list(map(int, input().split()))
+# result = [correct - current for correct, current in zip(correct_pieces, current_pieces)]
+# print(" ".join(map(str, result)))
+
+# 예제를 보고 규칙을 유추한 뒤에 별을 찍어 보세요.
+
+# linenum = int(input())  # 입력값을 정수로 변환
+# # 위쪽 피라미드
+# for i in range(linenum):
+#     spaces = " " * (linenum - i - 1)  # 공백을 문자열로 생성
+#     stars = "*" * (2 * i + 1)         # 별을 문자열로 생성
+#     print(spaces + stars)             # 공백과 별을 한 번에 출력
+# # 아래쪽 역삼각형
+# for i in range(1, linenum):
+#     spaces = " " * i                  # 공백을 문자열로 생성
+#     stars = "*" * (2 * (linenum - i) - 1)  # 별을 문자열로 생성
+#     print(spaces + stars)             # 공백과 별을 한 번에 출력
+
+# 알파벳 소문자로만 이루어진 단어가 주어진다. 이때, 이 단어가 팰린드롬인지 아닌지 확인하는 프로그램을 작성하시오.
+# 팰린드롬이란 앞으로 읽을 때와 거꾸로 읽을 때 똑같은 단어를 말한다. 
+# level, noon은 팰린드롬이고, baekjoon, online, judge는 팰린드롬이 아니다.
+
+# input_s = input()
+# is_valid = True
+# for i in range(len(input_s)):
+#     if (input_s[i] != input_s[len(input_s)-i-1]):
+#         is_valid = False
+# if (is_valid):
+#     print(1)
+# else:
+#     print(0)
+
+#     input_s = input()
+
+# input_s = input()
+# # 문자열이 회문인지 확인
+# if input_s == input_s[::-1]:  # 슬라이싱으로 문자열 뒤집기
+#     print(1)
+# else:
+#     print(0)
+
+# 알파벳 대소문자로 된 단어가 주어지면, 이 단어에서 가장 많이 사용된 알파벳이 무엇인지 알아내는 프로그램을 작성하시오. 단, 대문자와 소문자를 구분하지 않는다.
+
+# input_s = input().lower()
+# dict = {}
+# for i in input_s:
+#     if i in dict:
+#         dict[i] += 1
+#     else:
+#         dict[i] = 1
+# max_value = max(dict.values())
+# tmp = [k for k,v in dict.items() if v == max_value]
+
+# if (len(mp) == 1):
+#     print(tmp[0].upper())
+# else:
+#     print("?")
