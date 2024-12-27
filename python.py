@@ -952,12 +952,53 @@ def solution(triangle):
 # P/F 과목의 경우 등급이 P또는 F로 표시되는데, 등급이 P인 과목은 계산에서 제외해야 한다.
 # 과연 치훈이는 무사히 졸업할 수 있을까?
 
-unit = 0
-major_rating = 0
-for _ in range(20):
-    list_score = input().split()
-    subject_rate = {'A+':4.5, 'A0':4.0,'B+':3.5,'B0':3.0,'C+':2.5,'C0':2.0,'D+':1.5,'D0':1.0,'F':0.0}
-    if list_score[2] != 'P':
-        unit += float(list_score[1])
-        major_rating += float(list_score[1]) * subject_rate[list_score[2]]
-print(major_rating/unit)
+# unit = 0
+# major_rating = 0
+# for _ in range(20):
+#     list_score = input().split()
+#     subject_rate = {'A+':4.5, 'A0':4.0,'B+':3.5,'B0':3.0,'C+':2.5,'C0':2.0,'D+':1.5,'D0':1.0,'F':0.0}
+#     if list_score[2] != 'P':
+#         unit += float(list_score[1])
+#         major_rating += float(list_score[1]) * subject_rate[list_score[2]]
+# print(major_rating/unit)
+
+# N*M크기의 두 행렬 A와 B가 주어졌을 때, 두 행렬을 더하는 프로그램을 작성하시오.
+
+# # 입력 받기
+# n, m = map(int, input().split())  # 행렬 크기 N, M
+
+# # 행렬 A 입력 받기
+# matrix_a = []
+# for _ in range(n):
+#     matrix_a.append(list(map(int, input().split())))
+
+# # 행렬 B 입력 받기
+# matrix_b = []
+# for _ in range(n):
+#     matrix_b.append(list(map(int, input().split())))
+
+# # 두 행렬의 합 계산
+# result_matrix = []
+# for i in range(n):
+#     result_row = [matrix_a[i][j] + matrix_b[i][j] for j in range(m)]
+#     result_matrix.append(result_row)
+
+# # 결과 출력
+# for row in result_matrix:
+#     print(" ".join(map(str, row)))
+
+# <그림 1>과 같이 9×9 격자판에 쓰여진 81개의 자연수 또는 0이 주어질 때, 이들 중 최댓값을 찾고 그 최댓값이 몇 행 몇 열에 위치한 수인지 구하는 프로그램을 작성하시오.
+
+# matrix = []
+
+# for _ in range(9):
+#     matrix.append(list(map(int,input().split())))
+
+# max_value = max(max(row) for row in matrix)
+# print(max_value)
+
+# for i, row in enumerate(matrix):
+#     for j, col in enumerate(row):
+#         if (matrix[i][j] == max_value):
+#             print(f"{i+1} {j+1}")
+#             break
