@@ -1002,3 +1002,91 @@ def solution(triangle):
 #         if (matrix[i][j] == max_value):
 #             print(f"{i+1} {j+1}")
 #             break
+
+# 한 줄의 단어는 글자들을 빈칸 없이 연속으로 나열해서 최대 15개의 글자들로 이루어진다. 또한 만들어진 다섯 개의 단어들의 글자 개수는 서로 다를 수 있다. 
+# 심심해진 영석이는 칠판에 만들어진 다섯 개의 단어를 세로로 읽으려 한다. 세로로 읽을 때, 각 단어의 첫 번째 글자들을 위에서 아래로 세로로 읽는다. 다음에 두 번째 글자들을 세로로 읽는다. 이런 식으로 왼쪽에서 오른쪽으로 한 자리씩 이동 하면서 동일한 자리의 글자들을 세로로 읽어 나간다. 위의 그림 1의 다섯 번째 자리를 보면 두 번째 줄의 다섯 번째 자리의 글자는 없다. 이런 경우처럼 세로로 읽을 때 해당 자리의 글자가 없으면, 읽지 않고 그 다음 글자를 계속 읽는다. 그림 1의 다섯 번째 자리를 세로로 읽으면 D1gk로 읽는다. 
+# 그림 1에서 영석이가 세로로 읽은 순서대로 글자들을 공백 없이 출력하면 다음과 같다:
+# Aa0aPAf985Bz1EhCz2W3D1gkD6x
+# 칠판에 붙여진 단어들이 주어질 때, 영석이가 세로로 읽은 순서대로 글자들을 출력하는 프로그램을 작성하시오.
+
+# matrix = []
+# for _ in range(5):
+#     matrix.append(list(input()))
+
+# j = 0
+# for j in range(15):
+#     for i in range(5):
+#         if (j < len(matrix[i])):
+#             print(matrix[i][j], end="")
+#     j += 1
+
+# 네오와 프로도가 숫자놀이를 하고 있습니다. 네오가 프로도에게 숫자를 건넬 때 일부 자릿수를 영단어로 바꾼 카드를 건네주면 프로도는 원래 숫자를 찾는 게임입니다.
+# 다음은 숫자의 일부 자릿수를 영단어로 바꾸는 예시입니다.
+# 1478 → "one4seveneight"
+# 234567 → "23four5six7"
+# 10203 → "1zerotwozero3"
+# 이렇게 숫자의 일부 자릿수가 영단어로 바뀌어졌거나, 혹은 바뀌지 않고 그대로인 문자열 s가 매개변수로 주어집니다. s가 의미하는 원래 숫자를 return 하도록 solution 함수를 완성해주세요.
+# 참고로 각 숫자에 대응되는 영단어는 다음 표와 같습니다.
+
+def solution(s):
+    dict = {"zero":"0", "one":"1", "two":"2", "three":"3", "four":"4",
+    "five":"5", "six":"6", "seven":"7", "eight":"8", "nine":"9"}
+
+    for key in dict.keys():
+        s = s.replace(key, dict[key])
+    return int(s)
+
+# 가로, 세로의 크기가 각각 100인 정사각형 모양의 흰색 도화지가 있다. 이 도화지 위에 가로, 세로의 크기가 각각 10인 정사각형 모양의 검은색 색종이를 색종이의 변과 도화지의 변이 평행하도록 붙인다. 이러한 방식으로 색종이를 한 장 또는 여러 장 붙인 후 색종이가 붙은 검은 영역의 넓이를 구하는 프로그램을 작성하시오.
+
+# N = int(input())
+
+# paper = [[0]*100 for _ in range(100)]
+
+# for _ in range(N):
+#     x,y = map(int, input().split())
+#     for i in range(x,x+10):
+#         for j in range(y,y+10):
+#             paper[i][j] = 1
+
+# result = 0
+# for i in range(100):
+#     for j in range(100):
+#         if paper[i][j] == 1:
+#             result += 1
+# print(result)
+
+# B진법 수 N이 주어진다. 이 수를 10진법으로 바꿔 출력하는 프로그램을 작성하시오.
+# 10진법을 넘어가는 진법은 숫자로 표시할 수 없는 자리가 있다. 이런 경우에는 다음과 같이 알파벳 대문자를 사용한다.
+# A: 10, B: 11, ..., F: 15, ..., Y: 34, Z: 35
+
+# x,y = input().split()
+# print(int(x,int(y)))
+
+# 10진법 수 N이 주어진다. 이 수를 B진법으로 바꿔 출력하는 프로그램을 작성하시오.
+# 10진법을 넘어가는 진법은 숫자로 표시할 수 없는 자리가 있다. 이런 경우에는 다음과 같이 알파벳 대문자를 사용한다.
+# A: 10, B: 11, ..., F: 15, ..., Y: 34, Z: 35
+
+# num_str,base_str = input().split()
+
+# num = int(num_str)
+# base = int(base_str)
+
+# digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+# if num == 0:
+#     print("0") 
+
+# sign = ""
+# if num < 0:
+#     sign = "-"
+#     num = -num
+
+# result = []
+
+# while num > 0:
+#     remainder = num % base
+#     num //= base
+#     result.append(digits[remainder])
+
+# converted = "".join(reversed(result))
+# print(f"{sign}{converted}")
