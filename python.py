@@ -1151,4 +1151,105 @@ def solution(s):
 #         boundary += 6*layer
 #         layer += 1
 #     print(layer)
-        
+
+# 무한히 큰 배열에 다음과 같이 분수들이 적혀있다.
+# 1/1	1/2	1/3	1/4	1/5	…
+# 2/1	2/2	2/3	2/4	…	…
+# 3/1	3/2	3/3	…	…	…
+# 4/1	4/2	…	…	…	…
+# 5/1	…	…	…	…	…
+# …	…	…	…	…	…
+# 이와 같이 나열된 분수들을 1/1 → 1/2 → 2/1 → 3/1 → 2/2 → … 과 같은 지그재그 순서로 차례대로 1번, 2번, 3번, 4번, 5번, … 분수라고 하자.
+# X가 주어졌을 때, X번째 분수를 구하는 프로그램을 작성하시오.
+
+# def find_zigzag_fraction(X):
+#     # 1. 대각선 번호 찾기
+#     diagonal = 0  # 현재 대각선 번호
+#     count = 0  # 누적 분수 개수
+#     while count < X:
+#         diagonal += 1
+#         count += diagonal  # 대각선의 분수 개수를 누적
+
+#     # 2. 해당 대각선에서의 위치 계산
+#     position_in_diag = X - (count - diagonal) - 1  # 대각선 내 위치 (0부터 시작)
+
+#     # 3. 분자와 분모 계산
+#     if diagonal % 2 == 0:  # 짝수 대각선: 아래에서 위로
+#         numerator = position_in_diag + 1
+#         denominator = diagonal - position_in_diag
+#     else:  # 홀수 대각선: 위에서 아래로
+#         numerator = diagonal - position_in_diag
+#         denominator = position_in_diag + 1
+
+#     return f"{numerator}/{denominator}"
+
+# # 예시
+# X = int(input())
+# result = find_zigzag_fraction(X)
+# print(result)
+
+# 땅 위에 달팽이가 있다. 이 달팽이는 높이가 V미터인 나무 막대를 올라갈 것이다.
+# 달팽이는 낮에 A미터 올라갈 수 있다. 하지만, 밤에 잠을 자는 동안 B미터 미끄러진다. 또, 정상에 올라간 후에는 미끄러지지 않는다.
+# 달팽이가 나무 막대를 모두 올라가려면, 며칠이 걸리는지 구하는 프로그램을 작성하시오.
+
+# import math
+# A,B,V = map(int,input().split())
+# day = math.ceil((V-A) / (A-B)) + 1
+
+# print(day)
+
+# 4 × 3 = 12이다.
+# 이 식을 통해 다음과 같은 사실을 알 수 있다.
+# 3은 12의 약수이고, 12는 3의 배수이다.
+# 4도 12의 약수이고, 12는 4의 배수이다.
+# 두 수가 주어졌을 때, 다음 3가지 중 어떤 관계인지 구하는 프로그램을 작성하시오.
+# 첫 번째 숫자가 두 번째 숫자의 약수이다.
+# 첫 번째 숫자가 두 번째 숫자의 배수이다.
+# 첫 번째 숫자가 두 번째 숫자의 약수와 배수 모두 아니다.
+
+# while (1):
+#     A,B = map(int,input().split())
+#     if(A == 0 and B == 0):
+#         break
+#     result = ""
+#     if B % A == 0:
+#         result = "factor"
+#     elif A % B == 0:
+#         result = "multiple"
+#     else:
+#         result = "neither"
+#     print(result)
+
+# 어떤 자연수 p와 q가 있을 때, 만일 p를 q로 나누었을 때 나머지가 0이면 q는 p의 약수이다. 
+# 6을 예로 들면
+# 6 ÷ 1 = 6 … 0
+# 6 ÷ 2 = 3 … 0
+# 6 ÷ 3 = 2 … 0
+# 6 ÷ 4 = 1 … 2
+# 6 ÷ 5 = 1 … 1
+# 6 ÷ 6 = 1 … 0
+# 그래서 6의 약수는 1, 2, 3, 6, 총 네 개이다.
+# 두 개의 자연수 N과 K가 주어졌을 때, N의 약수들 중 K번째로 작은 수를 출력하는 프로그램을 작성하시오.
+
+# import math
+
+# A, B = map(int, input().split())
+# divisors = []
+
+# # 약수를 찾고 대칭적으로 추가
+# for i in range(1, int(math.sqrt(A)) + 1):
+#     if A % i == 0:
+#         divisors.append(i)  # 작은 약수
+#         if i != A // i:  # 큰 약수 (중복 방지)
+#             divisors.append(A // i)
+
+# # 약수를 정렬하고 B번째 약수 출력
+# divisors.sort()
+
+# if B <= len(divisors):
+#     print(divisors[B - 1])  # B는 1부터 시작하므로 인덱스는 B-1
+# else:
+#     print(0)  # 약수가 B보다 적을 경우
+
+
+
