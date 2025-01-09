@@ -1250,6 +1250,3 @@ def solution(s):
 #     print(divisors[B - 1])  # B는 1부터 시작하므로 인덱스는 B-1
 # else:
 #     print(0)  # 약수가 B보다 적을 경우
-
-
-
