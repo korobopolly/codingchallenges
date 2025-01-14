@@ -1,0 +1,15 @@
+c:\Users\shqkd\git\codingchallenges\ProjectName\bin\Debug\net9.0\ProjectName.exe
+c:\Users\shqkd\git\codingchallenges\ProjectName\bin\Debug\net9.0\ProjectName.deps.json
+c:\Users\shqkd\git\codingchallenges\ProjectName\bin\Debug\net9.0\ProjectName.runtimeconfig.json
+c:\Users\shqkd\git\codingchallenges\ProjectName\bin\Debug\net9.0\ProjectName.dll
+c:\Users\shqkd\git\codingchallenges\ProjectName\bin\Debug\net9.0\ProjectName.pdb
+c:\Users\shqkd\git\codingchallenges\ProjectName\obj\Debug\net9.0\ProjectName.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\shqkd\git\codingchallenges\ProjectName\obj\Debug\net9.0\ProjectName.AssemblyInfoInputs.cache
+c:\Users\shqkd\git\codingchallenges\ProjectName\obj\Debug\net9.0\ProjectName.AssemblyInfo.cs
+c:\Users\shqkd\git\codingchallenges\ProjectName\obj\Debug\net9.0\ProjectName.csproj.CoreCompileInputs.cache
+c:\Users\shqkd\git\codingchallenges\ProjectName\obj\Debug\net9.0\ProjectName.sourcelink.json
+c:\Users\shqkd\git\codingchallenges\ProjectName\obj\Debug\net9.0\ProjectName.dll
+c:\Users\shqkd\git\codingchallenges\ProjectName\obj\Debug\net9.0\refint\ProjectName.dll
+c:\Users\shqkd\git\codingchallenges\ProjectName\obj\Debug\net9.0\ProjectName.pdb
+c:\Users\shqkd\git\codingchallenges\ProjectName\obj\Debug\net9.0\ProjectName.genruntimeconfig.cache
+c:\Users\shqkd\git\codingchallenges\ProjectName\obj\Debug\net9.0\ref\ProjectName.dll
